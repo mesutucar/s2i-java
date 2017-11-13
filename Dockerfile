@@ -14,6 +14,10 @@ RUN INSTALL_PKGS="tar unzip bc which lsof java-1.8.0-openjdk java-1.8.0-openjdk-
     mkdir -p /opt/s2i/destination && chmod -R a+rwX /opt/s2i/destination && \
     mkdir -p /opt/app-root/src && chmod -R a+rwX /opt/app-root/src
 
+RUN (update-ca-trust force-enable && \
+    echo $'-----BEGIN CERTIFICATE-----\nMIIDUTCCAjmgAwIBAgIJAL6F6F9CU9nbMA0GCSqGSIb3DQEBBQUAMB4xHDAaBgNV\nBAMTE3N3Y2dpbnQxLmh2bG5ldC5uZXQwHhcNMTIwMzA3MTI0NDU4WhcNMzIwMzAy\nMTI0NDU4WjAeMRwwGgYDVQQDExNzd2NnaW50MS5odmxuZXQubmV0MIIBIjANBgkq\nhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA3XwvO5w7CzSkaBwkdWnCGsVFl1JDps/w\nxkkBMHxdDhH7f6Xj/lPSECOE7LMycEcEirHvheFTV8tvR9/SNDwdRl1qiw+fYXGa\nJ+Gnw9pewkb9m99ULXwXuydWzazAITWPk2KO6q9YiwQ3qrykYYTXSnkCWcLNzTgl\nLFhGgPVWXMvwLJCHYVSO4e3me3bWDVCkKvSoV7GiYnp3ilJjXESU/H/K9RD36zQh\n7Vt0y82Mdd4nwix3c4rwl/6gnoaargL9nWrQWwCJikxN368SZVqLcNbWLd19Ys2K\nk6juKNmAIcdjlboWwTy5/77Xbe5GvaOLJBB88/q+LvAYPZB3ildvGQIDAQABo4GR\nMIGOMA8GCWCGSAGG+EIBDQQCFgAwHQYDVR0OBBYEFCbrpebORUqTbyK1dXbVOsVD\nTt8uME4GA1UdIwRHMEWAFCbrpebORUqTbyK1dXbVOsVDTt8uoSKkIDAeMRwwGgYD\nVQQDExNzd2NnaW50MS5odmxuZXQubmV0ggkAvoXoX0JT2dswDAYDVR0TBAUwAwEB\n/zANBgkqhkiG9w0BAQUFAAOCAQEAQyp4Ycv5rXjOB8Z0M88cSx3muU5PH6BSST3/\ntxkR5cStd1Y0Au1c2gQYvx6Yg4wAmiPHC8YZyOIqpUdrbNE+LFfrQif5lrzGdO+m\n6pkXHLmuChJSIS59mSyDV1ruFFg3xV3g0wUfoD0BflH3UlOMug7THKeLpyUnINGY\nZXLN2Hz/wFN2Tcdp1AJQ8qPGUM2HPp5gg4RE9GxC4oTre0PvBa1dUpxOzzvpiySs\ns3L3BBTncR0Qug4hx4HbK4MScPSmsiwhwaAV2S5jQZx6JOfERUMaJ36HDqJDF+d8\nu5s6DWbwcUo2kYpE++YEWfu+2u2HzF4h6LyQYlmfgsDyWjCBpg==\n-----END CERTIFICATE-----' >/etc/pki/ca-trust/source/anchors/PCAcert.crt && \
+    update-ca-trust extract)
+
 ENV MAVEN_VERSION 3.3.9
 RUN (curl -0 http://www.eu.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz | \
     tar -zx -C /usr/local) && \

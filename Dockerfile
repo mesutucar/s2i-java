@@ -20,15 +20,15 @@ RUN (curl -0 http://www.eu.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries
     mv /usr/local/apache-maven-$MAVEN_VERSION /usr/local/maven && \
     ln -sf /usr/local/maven/bin/mvn /usr/local/bin/mvn && \
     mkdir -p $HOME/.m2 && chmod -R a+rwX $HOME/.m2
+ENV PATH=/opt/maven/bin/:$PATH
 
-ENV GRADLE_VERSION 2.6
-RUN curl -sL -0 https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip -o /tmp/gradle-${GRADLE_VERSION}-bin.zip && \
-    unzip /tmp/gradle-${GRADLE_VERSION}-bin.zip -d /usr/local/ && \
-    rm /tmp/gradle-${GRADLE_VERSION}-bin.zip && \
-    mv /usr/local/gradle-${GRADLE_VERSION} /usr/local/gradle && \
-    ln -sf /usr/local/gradle/bin/gradle /usr/local/bin/gradle
-
-ENV PATH=/opt/maven/bin/:/opt/gradle/bin/:$PATH
+#ENV GRADLE_VERSION 2.6
+#RUN curl -sL -0 https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip -o /tmp/gradle-${GRADLE_VERSION}-bin.zip && \
+#    unzip /tmp/gradle-${GRADLE_VERSION}-bin.zip -d /usr/local/ && \
+#    rm /tmp/gradle-${GRADLE_VERSION}-bin.zip && \
+#    mv /usr/local/gradle-${GRADLE_VERSION} /usr/local/gradle && \
+#    ln -sf /usr/local/gradle/bin/gradle /usr/local/bin/gradle
+#ENV PATH=/opt/gradle/bin/:$PATH
 
 ENV BUILDER_VERSION 1.0
 

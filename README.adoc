@@ -38,7 +38,7 @@ BUILDER_ARGS="build -x test"
 * First load all the needed resources in a project.
 
 ----
-oc create -f https://raw.githubusercontent.com/jorgemoralespou/s2i-java/master/ose3/s2i-java-imagestream.json
+oc create -f https://raw.githubusercontent.com/mesutucar/s2i-java/master/ose3/s2i-java-imagestream.json
 ----
 
 * Once the builder s2i-java has been registered, you can create an app with:
